@@ -94,7 +94,8 @@ class Pkey(ctypes.Structure):
 
     def new_ctx(self):
         r = libcrypto.EVP_PKEY_CTX_new(self, None)
-        return r
+        assert r, 'EVP_PKEY_CTX_new error'
+        return r.contents
     
 libcrypto.PEM_read_bio_PrivateKey.argtypes = (
     POINTER(BIO), POINTER(POINTER(Pkey)), CBFUNC, c_void_p)

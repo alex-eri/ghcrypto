@@ -45,6 +45,11 @@ class Digest(ctypes.Structure):
     ]
     finalized = False
 
+    @classmethod
+    def from_name(cls, name):
+        dt = DigestType.from_name(name)
+        return cls(dt)
+
     def __new__(cls, *a, **kw):
         return libcrypto.EVP_MD_CTX_new().contents
 
