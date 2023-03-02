@@ -104,3 +104,7 @@ libcrypto.EVP_MD_CTX_new.argtypes = None
 libcrypto.EVP_MD_CTX_free.restype = None
 libcrypto.EVP_MD_CTX_free.argtypes = (POINTER(Digest),)
 
+def new(name):
+    digest_type = DigestType.from_name(name)
+    d = Digest(digest_type)
+    return d
